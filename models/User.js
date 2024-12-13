@@ -85,6 +85,19 @@ class Data {
             });
         });
     }
+
+    static add(data, callback) {
+        const query = 'INSERT INTO data (name, height, weight, birthdate, married) VALUES (?, ?, ?, ?, ?)';
+        const marriedValue = data.married === "true" ? 1 : 0;
+        return db.run(query, [data.name, data.height, data.weight, data.birthdate, marriedValue], callback);
+    }
+
+    static getById(id, callback) {
+        const query = 'SELECT * FROM data WHERE id = ?';
+        return db.get(query, [id], callback);
+    }
+
+
 }
 export default Data;
 

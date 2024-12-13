@@ -35,5 +35,21 @@ class UserController {
         });
       });
     }
+
+    static add(req, res) {
+      if (req.method === "GET") {
+        res.render("add");
+      } else { // ** POST
+        Data.add(req.body, (err) => {
+          if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+          }
+          res.redirect("/");
+        });
+      }
+    }
+  
+
 }  
 export default UserController;
