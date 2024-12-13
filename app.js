@@ -11,6 +11,9 @@ app.use(express.static(path.join("public")));
 app.get("/", UserController.browse);
 app.get("/add", UserController.add);
 app.post("/add", UserController.add);
+app.get("/edit/:id", UserController.edit);
+app.post("/edit/:id", UserController.edit);
+
 app.listen(4000, () => {
     console.log(`Server running on port 4000`);
 });    

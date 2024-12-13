@@ -49,6 +49,29 @@ class UserController {
         });
       }
     }
+
+    static edit(req, res) {
+      if (req.method === "GET") {
+        Data.getById(req.params.id, (err, data) => {
+          if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+          }
+          res.render("edit", { data });
+        });
+      } else { // ** POST
+        Data.update(req.params.id, req.body, (err) => {
+          console.log(req.body);
+  
+          if (err) {
+            res.status(500).json({ error: err.message });
+            return;
+          }
+          res.redirect("/");
+        });
+      }
+    }
+  
   
 
 }  
