@@ -18,7 +18,7 @@
                 <div class="search-controls">
                     <div class="form-group">
                         <label class="form-label">Name</label>
-                        <input type="text" name="search" placeholder="insert your name" value="<%= filter.name || '' %>" />
+                        <input type="text" name="name" placeholder="insert your name" value="<%= filter.name || '' %>" />
                     </div>
                     <div class="form-group">
                         <label class="form-label">Height</label>
@@ -75,11 +75,11 @@
                 <% data.forEach((item, index) => { %>
                 <tr>
                     <td><%= (page - 1) * 5 + index + 1 %></td>
-                    <td class="highlightable"><%= item.name %></td>
-                    <td class="highlightable"><%= item.height %></td>
-                    <td class="highlightable"><%= item.weight %></td>
-                    <td class="highlightable"><%= item.birthdate %></td>
-                    <td class="highlightable"><%= item.married ? "Yes" : "Not Yet" %></td>
+                    <td class="highlight-name"><%= item.name %></td>
+                    <td class="highlight-height"><%= item.height %></td>
+                    <td class="highlight-weight"><%= item.weight %></td>
+                    <td class="highlight-birthdate"><%= item.birthdate %></td>
+                    <td class="highlight-married"><%= item.married ? "Yes" : "Not Yet" %></td>
                     <td>
                         <a href="/edit/<%= item.id %>" class="btn-update">Update</a>
                         <a href="/delete/<%= item.id %>" class="btn-delete" onclick="return confirm('Apakah kamu yakin untuk menghapus data <%= item.name %>?')">Delete</a>
@@ -108,42 +108,41 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         const searchParams = new URLSearchParams(window.location.search);
-        const searchQuery = searchParams.get('search');
+        const nameQuery = searchParams.get('name');
         const heightQuery = searchParams.get('height');
         const weightQuery = searchParams.get('weight');
-        const startDateQuery = searchParams.get('startdate'); 
+        const startDateQuery = searchParams.get('startdate');
         const endDateQuery = searchParams.get('enddate');
         const marriedQuery = searchParams.get('married');
 
-        
-        if (searchQuery) {
-            highlightText(searchQuery);
+        if (nameQuery) {
+            highlightText(nameQuery, '.highlight-name');
         }
 
         if (heightQuery) {
-            highlightText(heightQuery);
+            highlightText(heightQuery, '.highlight-height');
         }
-        
+
         if (weightQuery) {
-            highlightText(weightQuery);
+            highlightText(weightQuery, '.highlight-weight');
         }
 
-
-        if (startDateQuery) { 
-          highlightText(startDateQuery); 
-        } 
-        if (endDateQuery) { 
-          highlightText(endDateQuery); 
+        if (startDateQuery) {
+            highlightText(startDateQuery, '.highlight-birthdate');
         }
+
+        if (endDateQuery) {
+            highlightText(endDateQuery, '.highlight-birthdate');
+        }
+
         if (marriedQuery) {
-           highlightText(marriedQuery === 'true' ? 'Yes' : 'Not Yet'); 
-          }
-
+            highlightText(marriedQuery === 'true' ? 'Yes' : 'Not Yet', '.highlight-married');
+        }
     });
 
-    function highlightText(query) {
-        const highlightableCells = document.querySelectorAll('.highlightable');
-        
+    function highlightText(query, selector) {
+        const highlightableCells = document.querySelectorAll(selector);
+
         highlightableCells.forEach(cell => {
             const regex = new RegExp(`(${query})`, 'gi');
             cell.innerHTML = cell.innerHTML.replace(regex, '<span class="highlight">$1</span>');

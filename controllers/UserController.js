@@ -6,7 +6,7 @@ class UserController {
       const page = parseInt(req.query.page) || 1; // ambil nomor page dari query string
       const operation = req.query.operation || "OR"; // ambil operasi logika dari query string
       const filter = { // Buat Object Filter untuk cari berdasarkan parameter
-        name: req.query.search,
+        name: req.query.name,
         height: req.query.height,
         weight: req.query.weight,
         startDate: req.query.startdate,
