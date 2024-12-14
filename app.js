@@ -13,7 +13,7 @@ app.get("/add", UserController.add);
 app.post("/add", UserController.add);
 app.get("/edit/:id", UserController.edit);
 app.post("/edit/:id", UserController.edit);
-
+app.get("/delete/:id", UserController.delete);
 app.listen(4000, () => {
     console.log(`Server running on port 4000`);
 });    

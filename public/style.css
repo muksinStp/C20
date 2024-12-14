@@ -22,7 +22,9 @@ body {
   .search-form {
     padding: 20px;
   }
-  
+
+  .highlight { background-color: yellow; /* Warna latar belakang kuning untuk menyoroti teks */ font-weight: bold; /* Membuat teks menjadi tebal */ color: red; /* Warna teks merah */
+  }
   /* Style untuk form container */
   .container {
     background-color: white;

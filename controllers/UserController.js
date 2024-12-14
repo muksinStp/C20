@@ -26,6 +26,7 @@ class UserController {
           return;
         }
         res.render("index", { // ** Tampilkan Daftar User
+          title: 'Daftar Pengguna',
           data,
           page,
           filter,
@@ -38,7 +39,7 @@ class UserController {
 
     static add(req, res) {
       if (req.method === "GET") {
-        res.render("add");
+        res.render("add", { title: 'Tambah Pengguna', user: null }); // Mengirim title dan user null untuk form kosong
       } else { // ** POST
         Data.add(req.body, (err) => {
           if (err) {
@@ -52,12 +53,12 @@ class UserController {
 
     static edit(req, res) {
       if (req.method === "GET") {
-        Data.getById(req.params.id, (err, data) => {
+        Data.getById(req.params.id, (err, user) => { // Menggunakan user daripada data untuk konsistensi
           if (err) {
             res.status(500).json({ error: err.message });
             return;
           }
-          res.render("edit", { data });
+          res.render("edit", { title: 'Edit Pengguna', user }); // Mengirim title dan user
         });
       } else { // ** POST
         Data.update(req.params.id, req.body, (err) => {
@@ -71,8 +72,15 @@ class UserController {
         });
       }
     }
-  
-  
 
+    static delete(req, res) {
+      Data.delete(req.params.id, (err) => {
+        if (err) {
+          res.status(500).json({ error: err.message });
+          return;
+        }
+        res.redirect("/");
+      });
+    }
 }  
 export default UserController;

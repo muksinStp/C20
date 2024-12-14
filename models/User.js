@@ -92,6 +92,11 @@ class Data {
         return db.run(query, [data.name, data.height, data.weight, data.birthdate, marriedValue], callback);
     }
 
+    static getById(id, callback) {
+        const query = 'SELECT * FROM data WHERE id = ?';
+        return db.get(query, [id], callback);
+    }
+
     static update(id, data, callback) {
         const query = 'UPDATE data SET name =?, height =?, weight =?, birthdate =?, married =? WHERE id =?';
         const marriedValue = data.married === "true" ? 1 : 0;
@@ -99,9 +104,9 @@ class Data {
     }
 
 
-    static getById(id, callback) {
-        const query = 'SELECT * FROM data WHERE id = ?';
-        return db.get(query, [id], callback);
+    static delete(id, callback) {
+        const query = 'DELETE FROM data WHERE id = ?';
+        return db.run(query, [id], callback);
     }
 
 
