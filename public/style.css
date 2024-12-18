@@ -1,11 +1,12 @@
-body {
+  body { 
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 0px 0px 0;
     padding: 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
+    align-items: center; 
+  } 
+  
   
   .title {
     margin-bottom: 20px;
@@ -22,15 +23,17 @@ body {
   .search-form {
     padding: 20px;
   }
-
-  .highlight { background-color: yellow; /* Warna latar belakang kuning untuk menyoroti teks */ font-weight: bold; /* Membuat teks menjadi tebal */ color: red; /* Warna teks merah */
+  .highlight { background-color: yellow; /* Warna latar belakang kuning untuk menyoroti teks */ 
+    font-weight: bold; /* Membuat teks menjadi tebal */ 
+    color: red; /* Warna teks merah */
   }
-  /* Style untuk form container */
+  
   .container {
     background-color: white;
     border-radius: 4px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    width: 80%;
   }
   
   /* Style untuk form */
@@ -52,15 +55,36 @@ body {
   }
   
   /* Style untuk input */
-  input[type="text"],
+  /* input[type="text"],
   input[type="number"],
   input[type="date"],
   select {
     flex: 1;
     padding: 6px 12px;
-    border: 1px solid #ced4da;
+    border: 2px solid #ced4da;
     border-radius: 4px;
-  }
+  } */
+
+  /* Mengatur border default */
+form input[type="text"],
+form input[type="number"],
+form input[type="date"],
+form select {
+    flex:1;
+    border: 1px solid #ced4da; /* Border default */
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+/* Mengubah border menjadi merah saat fokus */
+form input[type="text"]:focus,
+form input[type="number"]:focus,
+form input[type="date"]:focus,
+form select:focus {
+    border: 2px solid rgb(167, 207, 244); /* Border merah saat fokus */
+    outline: none; /* Menghilangkan outline default browser */
+}
+
   
   /* Style untuk radio buttons */
   .radio-group {
@@ -85,7 +109,8 @@ body {
   }
   
   .btn-reset {
-    background-color: #f0ad4e;
+
+    background-color: #f8dc09;
     color: rgb(0, 0, 0);
     border: none;
     padding: 8px 16px;
@@ -114,28 +139,29 @@ body {
   }
   
   th {
-    background-color: #f8f9fa;
+    background-color: white;
     font-weight: normal;
   }
   
-  tr:nth-child(even) {
-    background-color: #f8f9fa;
+  tr:nth-child(odd) {
+    background-color: #f6f6f5f2;
   }
   
   /* Style untuk tombol aksi */
   .btn-update {
     background-color: #458a45;
     color: white;
-    padding: 4px 8px;
+    padding: 8px 12px;
     border-radius: 4px;
     text-decoration: none;
     margin-right: 5px;
+    margin-bottom: 2px;
   }
   
   .btn-delete {
-    background-color: #a33d3a;
+    background-color: #b3280be6;
     color: white;
-    padding: 4px 8px;
+    padding: 8px 12px;
     border-radius: 4px;
     text-decoration: none;
   }
@@ -149,30 +175,30 @@ body {
     background-color: #f0f0f0;
   }
   
-  .btn-add {
+  .btn-save {
     background-color: #4e4eff;
     color: white;
     border: none;
-    padding: 8px 30px;
+    padding: 8px 20px;
     border-radius: 4px;
     cursor: pointer;
   }
   
-  .btn-add a {
+  .btn-save a {
     text-decoration: none;
     color: white;
   }
   
-  .btn-cancel {
+  .btn-back {
     background-color: #f0ad4e;
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 8px 20px;
     border-radius: 4px;
     cursor: pointer;
   }
   
-  .btn-cancel a {
+  .btn-back a {
     text-decoration: none;
     color: white;
   }
@@ -277,4 +303,16 @@ body {
     width: 100%; /* Menggunakan lebar penuh */
     box-sizing: border-box; /* Memastikan padding termasuk dalam width */
   }
+
+  /* CSS untuk menambahkan tanda centang (✔) ke opsi Not Yet yang dipilih */
+#married-select option[value="false"]::after {
+  content: " ✔";
+}
+
+/* CSS untuk memastikan opsi yang dipilih menampilkan tanda centang */
+#married-select option[selected]::after {
+  content: " ✔";
+}
+
+  
   
